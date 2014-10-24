@@ -2,7 +2,8 @@
 public class StoreSystem {
 	
 	public static void main(String[] args){
-		System.out.println("Hej på dej");
+		System.out.println("Hej pï¿½ dej");
+		int a=10;
 	}
 	
 }
