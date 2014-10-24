@@ -1,7 +1,6 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -22,6 +21,7 @@ public class MainGUI implements ActionListener{
 		panel.add(b);
 		frame.add(panel);
 	}
+	
 	
 	public void actionPerformed(ActionEvent ae) {
 		new AddItemGUI(s);

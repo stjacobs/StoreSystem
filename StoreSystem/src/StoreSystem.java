@@ -1,8 +1,9 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class StoreSystem {
 	
-	public ArrayList<Item> inventory = new ArrayList<Item>();
+	public List<Item> inventory = new ArrayList<Item>();
 	
 	public StoreSystem()
 	{

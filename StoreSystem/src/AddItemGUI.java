@@ -90,8 +90,7 @@ public class AddItemGUI implements ActionListener{
 		
 		frame.setVisible(true);
 	}
-
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		JButton btn = (JButton) e.getSource();
 		if(btn.equals(okButton)){
