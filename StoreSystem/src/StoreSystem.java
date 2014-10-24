@@ -8,6 +8,8 @@ public class StoreSystem {
 		Scanner in = new Scanner(System.in);
 		
 		int a = 10;
+
+		System.out.println(in.next());
 	}
 	
 }
