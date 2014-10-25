@@ -1,12 +1,12 @@
 
 public class Item {
 	
-	int barCode;
+	long barCode;
 	int price;
 	int balance;
 	String name;
 	
-	public Item(String name, int price, int balance, int barCode){
+	public Item(String name, int price, int balance, long barCode){
 		this.barCode = barCode;
 		this.price = price;
 		this.balance = balance;

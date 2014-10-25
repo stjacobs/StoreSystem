@@ -88,7 +88,7 @@ public class AddItemGUI extends JPanel implements ActionListener{
 			String name = nameField.getText();
 			int balance = Integer.parseInt(balanceField.getText());
 			int price = Integer.parseInt(priceField.getText());
-			int barCode = Integer.parseInt(barCodeField.getText());
+			long barCode = Long.parseLong(barCodeField.getText());
 			
 			Item i = new Item(name, price, balance, barCode);
 			
