@@ -1,6 +1,7 @@
-/StoreSystem.class
-/Inventory.class
+/AddItemGUI.class
 /Item.class
 /MainGUI.class
-/AddItemGUI.class
+/StoreSystem.class
 /sg.jpg
+/ItemsList.class
+/ItemsListGUI.class

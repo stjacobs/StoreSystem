@@ -6,9 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class AddItemGUI implements ActionListener{
-	
-	JFrame frame;
+public class AddItemGUI extends JPanel implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	JTextField nameField;
 	JTextField balanceField;
 	JTextField priceField;
@@ -17,24 +16,23 @@ public class AddItemGUI implements ActionListener{
 	JPanel balancePanel;
 	JPanel pricePanel;
 	JPanel barCodePanel;
+	JPanel mainPanel;
 	
 	JPanel leftPanel;
 	JPanel rightPanel;
 	JPanel inputPanel;
 	JPanel buttonPanel;
-	JPanel mainPanel;
 	
 	
 	JButton okButton;
-	JButton doneButton;
+
 	JButton cancelButton;
 	
 	StoreSystem s;
 	
 	public AddItemGUI(StoreSystem s){
 		this.s = s;
-		
-		frame = new JFrame("Lägg till vara");
+		this.setLayout(new GridBagLayout());
 		nameField = new JTextField(20);
 		balanceField = new JTextField(20);
 		priceField = new JTextField(20);
@@ -47,11 +45,9 @@ public class AddItemGUI implements ActionListener{
 		JLabel barCodeLabel = new JLabel("Streckkod: ");
 		
 		okButton = new JButton("Lägg till");
-		doneButton = new JButton("Klar");
 		cancelButton = new JButton("Avbryt");
 	
 		okButton.addActionListener(this);
-		doneButton.addActionListener(this);
 		cancelButton.addActionListener(this);
 		
 		namePanel = new JPanel();
@@ -63,7 +59,7 @@ public class AddItemGUI implements ActionListener{
 		rightPanel = new JPanel(new GridLayout(4,1));
 		inputPanel = new JPanel(new GridLayout(1,2));
 		buttonPanel = new JPanel(new GridBagLayout());
-		mainPanel = new JPanel(new GridLayout(2, 1));
+		mainPanel = new JPanel(new GridLayout(2,1));
 		
 		leftPanel.add(nameLabel);
 		rightPanel.add(nameField);
@@ -79,16 +75,11 @@ public class AddItemGUI implements ActionListener{
 		
 		buttonPanel.add(okButton);
 		buttonPanel.add(cancelButton);
-		buttonPanel.add(doneButton);
 		
 		mainPanel.add(inputPanel);
 		mainPanel.add(buttonPanel);
 		
-		frame.add(mainPanel);
-		
-		frame.setSize(400, 200);
-		
-		frame.setVisible(true);
+		this.add(mainPanel);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -99,20 +90,22 @@ public class AddItemGUI implements ActionListener{
 			int price = Integer.parseInt(priceField.getText());
 			int barCode = Integer.parseInt(barCodeField.getText());
 			
-			s.inventory.add(new Item(name, price, balance, barCode));
+			Item i = new Item(name, price, balance, barCode);
+			
+			s.inventory.add(i);
+			ItemsListGUI.dlm.addElement(i);
+			
+			nameField.setText("");
+			balanceField.setText("");
+			priceField.setText("");
+			barCodeField.setText("");			
 		}
 		
 		else if(btn.equals(cancelButton)){
-			System.out.println("cancel");
+			nameField.setText("");
+			balanceField.setText("");
+			priceField.setText("");
+			barCodeField.setText("");			
 		}
-
-		else if(btn.equals(doneButton)){
-			for(int i = 0; i < s.inventory.size(); i++)
-				System.out.println(s.inventory.get(i));
-			
-			frame.setVisible(false);
-		}
-		
 	}
-	
 }
