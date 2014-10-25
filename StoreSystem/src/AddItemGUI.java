@@ -9,6 +9,7 @@ import javax.swing.*;
 public class AddItemGUI extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	JTextField nameField;
+	JTextField brandField;
 	JTextField balanceField;
 	JTextField priceField;
 	JTextField barCodeField;
@@ -34,11 +35,12 @@ public class AddItemGUI extends JPanel implements ActionListener{
 		this.s = s;
 		this.setLayout(new GridBagLayout());
 		nameField = new JTextField(20);
+		brandField = new JTextField(20);
 		balanceField = new JTextField(20);
 		priceField = new JTextField(20);
 		barCodeField = new JTextField(20);
 		
-		
+		JLabel brandLabel = new JLabel("Märke: ");
 		JLabel nameLabel = new JLabel("Namn: ");
 		JLabel balanceLabel = new JLabel("Antal: ");
 		JLabel priceLabel = new JLabel("Pris: ");
@@ -55,12 +57,14 @@ public class AddItemGUI extends JPanel implements ActionListener{
 		pricePanel = new JPanel();
 		barCodePanel = new JPanel();
 		
-		leftPanel = new JPanel(new GridLayout(4,1));
-		rightPanel = new JPanel(new GridLayout(4,1));
+		leftPanel = new JPanel(new GridLayout(5,1));
+		rightPanel = new JPanel(new GridLayout(5,1));
 		inputPanel = new JPanel(new GridLayout(1,2));
 		buttonPanel = new JPanel(new GridBagLayout());
 		mainPanel = new JPanel(new GridLayout(2,1));
 		
+		leftPanel.add(brandLabel);
+		rightPanel.add(brandField);		
 		leftPanel.add(nameLabel);
 		rightPanel.add(nameField);
 		leftPanel.add(balanceLabel);
@@ -85,16 +89,17 @@ public class AddItemGUI extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton btn = (JButton) e.getSource();
 		if(btn.equals(okButton)){
+			String brand = brandField.getText();
 			String name = nameField.getText();
 			int balance = Integer.parseInt(balanceField.getText());
 			int price = Integer.parseInt(priceField.getText());
 			long barCode = Long.parseLong(barCodeField.getText());
 			
-			Item i = new Item(name, price, balance, barCode);
+			Item i = new Item(brand, name, price, balance, barCode);
 			
 			s.inventory.add(i);
-			ItemsListGUI.dlm.addElement(i);
 			
+			brandField.setText("");
 			nameField.setText("");
 			balanceField.setText("");
 			priceField.setText("");
@@ -102,6 +107,7 @@ public class AddItemGUI extends JPanel implements ActionListener{
 		}
 		
 		else if(btn.equals(cancelButton)){
+			brandField.setText("");
 			nameField.setText("");
 			balanceField.setText("");
 			priceField.setText("");

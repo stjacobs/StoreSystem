@@ -5,12 +5,14 @@ public class Item {
 	int price;
 	int balance;
 	String name;
+	String brand;
 	
-	public Item(String name, int price, int balance, long barCode){
+	public Item(String brand, String name, int price, int balance, long barCode){
 		this.barCode = barCode;
 		this.price = price;
 		this.balance = balance;
 		this.name = name;
+		this.brand = brand;
 	}
 	
 	public int getBalance(){
@@ -21,7 +23,12 @@ public class Item {
 		balance = balance - n;
 	}
 	
+	public Object[] toObject(){
+		Object[] o = {brand, name, price, balance, barCode};
+		return o;
+	}
+	
 	public String toString(){
-		return name + " " + price + " " + balance + " " + barCode;
+		return brand + " " +  name + " " + price + " " + balance + " " + barCode;
 	}
 }

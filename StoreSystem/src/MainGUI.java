@@ -1,41 +1,46 @@
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class MainGUI implements ActionListener{
+public class MainGUI implements ChangeListener{
 	
 	JFrame frame;
-	JPanel mainPanel = new JPanel(new BorderLayout());
-	JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
+	JPanel mainPanel = new JPanel();
 	
 	JTabbedPane tabs = new JTabbedPane();
 	
 	StoreSystem s;
-	AddItemGUI g = new AddItemGUI(s);
+	AddItemGUI aig;
+	ItemsListGUI ilg;
 	
 	public MainGUI(StoreSystem s){
 		this.s = s;
+		
+		aig = new AddItemGUI(s);
+		ilg = new ItemsListGUI(s);
+		
 		frame = new JFrame("Store system");
-		frame.setSize(1000, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
 		tabs.add("Sälj", new JPanel());
-		tabs.add("Varor", new ItemsListGUI(s));
-		tabs.add("Lägg till",new AddItemGUI(s));
+		tabs.add("Varor", ilg);
+		tabs.add("Lägg till", aig);
 		tabs.add("Ta bort", new JPanel());
 		
+		tabs.addChangeListener(this);
+		
 		frame.add(tabs);
-		
-		
+		frame.setSize(1000, 600);	
 	}
-	
-	
-	public void actionPerformed(ActionEvent ae) {
-		//Object o = ae.getSource();
 
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		int index = tabs.getSelectedIndex();
+		
+		if(index == 1){
+			ilg.updateGUI();
+		}
+		
 	}
 }
